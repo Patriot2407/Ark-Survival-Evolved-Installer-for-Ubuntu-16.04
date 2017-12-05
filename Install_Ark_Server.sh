@@ -3,9 +3,9 @@ sudo add-apt-repository multiverse
 sudo apt-get update
 sudo apt-get update
 sudo apt-get install steamcmd -y
-echo "fs.file-max=100000" >> /etc/sysctl.conf && sysctl -p
-echo "* soft nofile 1000000" >> /etc/security/limits.conf
-echo "* hard nofile 1000000" >> /etc/security/limits.conf
+sudo echo "fs.file-max=100000" >> /etc/sysctl.conf && sudo sysctl -p
+sudo echo "* soft nofile 1000000" >> /etc/security/limits.conf
+sudo echo "* hard nofile 1000000" >> /etc/security/limits.conf
 echo "session required pam_limits.so" >> /etc/pam.d/common-session
 if [ -d "/Ark" ]
 	then
