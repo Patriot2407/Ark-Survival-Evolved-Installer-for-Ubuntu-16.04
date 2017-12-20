@@ -6,6 +6,7 @@ RCONPASSWORD=##
 RCONIP=127.0.0.1
 RCONPORT=##
 STEAMCMDDIR=##
+email=email@address
 #----------------------------------------------------------------------------------------------
 status=$($RCONDIR/rcon -P$RCONPASSWORD -a$RCONIP -p$RCONPORT listplayers)
 status2=$(echo ${status} | sed -e 's/^ *//g;s/ *$//g')
@@ -44,5 +45,5 @@ echo "End update process at `date +%F_%H%M`" &>> $LogPath
 echo "-----------------------------------------------" &>> $LogPath
 sudo systemctl start ark
 sudo systemctl status ark &>> $LogPath
-mail -s "Ark Server Info" email@address < $LogPath
+mail -s "Ark Server Info" $email < $LogPath
 exit 0

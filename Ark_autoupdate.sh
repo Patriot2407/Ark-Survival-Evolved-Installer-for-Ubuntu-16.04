@@ -3,6 +3,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin	#Sets the PATH
 STEAMDIR=##
 STEAMCMDDIR=##
 SCRIPTDIR=##
+email=email@address
 #-------RCON--------
 RCONDIR=##
 RCONPASSWORD=##
@@ -22,7 +23,7 @@ if [ "$LATESTUPDATE" != "$INSTALLEDUPDATE" ] && [ "$LATESTUPDATE" != "" ] && [ "
 	then
 	echo "$(date) Update - $(echo $INSTALLEDUPDATE) to $(echo $LATESTUPDATE)" >> $(echo $SCRIPTDIR)/ArkUpdateLogs/AutoUpdatelog.txt
 	$RCONDIR/rcon -P$RCONPASSWORD -a$RCONIP -p$RCONPORT serverchat AUTOMATION: New update available!
-	echo "$(date) There is a new Ark update available! The version available is: $LATESTUPDATE. Starting the Update process..." | mail -s "Ark Server Info" email@address
+	echo "$(date) There is a new Ark update available! The version available is: $LATESTUPDATE. Starting the Update process..." | mail -s "Ark Server Info" $email
 	$SCRIPTDIR/Update_Ark.sh
 	$STEAMCMDDIR/steamcmd +login anonymous +app_info_update 1 +app_info_print "376030" +app_info_print "376030" +quit | grep -EA 1000 "^\s+\"branches\"$" | grep -EA 5 "^\s+\"public\"$" | grep -m 1 -EB 10 "^\s+}$" | grep -E "^\s+\"buildid\"\s+" | tr '[:blank:]"' ' ' | tr -s ' ' | cut -d' ' -f3 > $SCRIPTDIR/ArkUpdateLogs/latestinstalledupdate.txt
 	else
