@@ -15,5 +15,6 @@ I recommend running the Update_Forcer_Ark_Server.sh at the same time interval as
 
 Use Cron to run Ark_autoupdate.sh every 15 minutes, along with Update_Forcer_Ark_Server.sh every 15 minutes. to do this run crontab -e and at the bottom input */15 * * * * /DIRECTORY/SCRIPT.sh
 
+You can compile your rcon password inside of the rcon.c file, before running the compile command. This is recommended for security reasons.
 
 DISCLAIMER* I did NOT write the rcon.c file.
